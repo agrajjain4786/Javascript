@@ -27,3 +27,12 @@ if (score >= 80) {
 } else if (score >= 40) {
   console.log("D");
 }
+
+// alert
+
+alert("Something is wronge!");
+
+// prompt
+
+let name = prompt("enter your name");
+console.log(`you enter this ${name}`)
