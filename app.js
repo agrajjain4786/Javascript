@@ -35,4 +35,4 @@ alert("Something is wronge!");
 // prompt
 
 let name = prompt("enter your name");
-console.log(`you enter this ${name}`)
+console.log(`you enter this ${name}`);
