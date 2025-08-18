@@ -1,0 +1,17 @@
+* {
+  text-align: center;
+}
+
+div {
+  justify-self: center;
+  border: 2px solid black;
+  height: 100px;
+  width: 600px;
+  margin-top: 20px;
+}
+button {
+  margin-top: 20px;
+}
+p {
+  margin-top: 0;
+}
