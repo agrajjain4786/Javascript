@@ -1,0 +1,38 @@
+body {
+  text-align: center;
+}
+.btn {
+  height: 200px;
+  width: 200px;
+  border-radius: 20%;
+  border: 10px solid black;
+  /* margin: 10px; */
+}
+.one {
+  background-color: greenyellow;
+}
+.two {
+  background-color: red;
+}
+.three {
+  background-color: yellow;
+}
+.four {
+  background-color: skyblue;
+}
+.one,
+.three {
+  justify-self: end;
+}
+.two,
+.four {
+  justify-self: start;
+}
+.btn-container {
+  display: grid;
+  grid-template-rows: repeat(2, 1fr);
+  grid-template-columns: repeat(2, 1fr);
+  /* grid-row: 2; */
+  justify-items: center;
+  grid-gap: 20px;
+}
