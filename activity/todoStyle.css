@@ -1,0 +1,13 @@
+* {
+  text-align: center;
+}
+div {
+  border: 2px solid black;
+  height: fit-content;
+  width: 250px;
+  display: flex;
+  justify-self: center;
+}
+ul {
+  margin: 5px;
+}
