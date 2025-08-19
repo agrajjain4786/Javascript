@@ -1,5 +1,6 @@
 body {
   text-align: center;
+  /* background-color: red; */
 }
 .btn {
   height: 200px;
@@ -35,4 +36,10 @@ body {
   /* grid-row: 2; */
   justify-items: center;
   grid-gap: 20px;
+}
+.flash {
+  background-color: #fff;
+}
+.clickFlash {
+  background-color: black;
 }
