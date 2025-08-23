@@ -7,6 +7,12 @@
   </head>
   <body>
     <h2>This page belongs to @<%=username%></h2>
+    <ul>
+      <%for(follower of followers){%>
+      <li><%=follower%></li>
+      <%}%>
+    </ul>
+
     <button>Follow</button>
     <button>Message</button>
   </body>
