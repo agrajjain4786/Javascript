@@ -19,7 +19,10 @@ app.get("/rolldice", (req, res) => {
 app.get("/ig/:username", (req, res) => {
   // use ":" colon after "/" to make or get req paramenters
   let { username } = req.params;
-  res.render(`instagram.ejs`, { username });
+
+  const followers = ["agraj", "arjan", "sarthak", "naman", "nipun"];
+
+  res.render(`instagram.ejs`, { username, followers });
   console.log(username);
 });
 
