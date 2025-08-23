@@ -2,6 +2,8 @@ const express = require("express");
 const app = express();
 const path = require("path");
 
+const instaData = require("./data.json");
+
 const port = 3000;
 
 app.set("view engine", "ejs");
@@ -19,11 +21,13 @@ app.get("/rolldice", (req, res) => {
 app.get("/ig/:username", (req, res) => {
   // use ":" colon after "/" to make or get req paramenters
   let { username } = req.params;
-
-  const followers = ["agraj", "arjan", "sarthak", "naman", "nipun"];
-
-  res.render(`instagram.ejs`, { username, followers });
-  console.log(username);
+  let data = instaData[username];
+  // console.log(data);
+  if (data) {
+    res.render(`instagram.ejs`, { data });
+  } else {
+    res.send('<h1 style = "color:red;">user not found</h1>');
+  }
 });
 
 app.get("/", (req, res) => {

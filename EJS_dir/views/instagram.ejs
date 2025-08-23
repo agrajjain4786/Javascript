@@ -4,16 +4,27 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>instagram</title>
+    <style>img{
+      height: 400px;
+      width: 300px;
+    }</style>
   </head>
   <body>
-    <h2>This page belongs to @<%=username%></h2>
-    <ul>
-      <%for(follower of followers){%>
-      <li><%=follower%></li>
-      <%}%>
-    </ul>
-
+    <h2>This page belongs to @<%=data.name%></h2>
+    
     <button>Follow</button>
     <button>Message</button>
+    <p>
+      Followers : <%=data.followers%> &nbsp;&nbsp;&nbsp;&nbsp; Following :
+      <%=data.following%>
+      <hr>
+      <%for(post of data.posts){%>
+        <img src="<%=post.image%>" >
+        <p>
+          likes: <%=post.likes%>&nbsp;&nbsp;&nbsp;&nbsp;Comments: <%=post.comments%>
+        </p>
+        <%}%>
+    </p>
   </body>
 </html>
+
