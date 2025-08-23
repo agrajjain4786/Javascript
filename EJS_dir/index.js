@@ -16,6 +16,13 @@ app.get("/rolldice", (req, res) => {
   res.render(`rolldice.ejs`, { diceVal });
 });
 
+app.get("/ig/:username", (req, res) => {
+  // use ":" colon after "/" to make or get req paramenters
+  let { username } = req.params;
+  res.render(`instagram.ejs`, { username });
+  console.log(username);
+});
+
 app.get("/", (req, res) => {
   res.render("home.ejs");
 });
