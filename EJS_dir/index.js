@@ -11,6 +11,11 @@ app.get("/root", (req, res) => {
   res.send("this is root");
 });
 
+app.get("/rolldice", (req, res) => {
+  let diceVal = Math.floor(Math.random() * 6) + 1;
+  res.render(`rolldice.ejs`, { diceVal });
+});
+
 app.get("/", (req, res) => {
   res.render("home.ejs");
 });
