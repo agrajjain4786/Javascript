@@ -7,9 +7,14 @@ const connection = mysql.createConnection({
   database: "FirstSqlDb",
   password: "1905696",
 });
+let q = "INSERT INTO user (id, username, email, password) VALUES ?";
+let users = [
+  ["101", "Agraj", "aj@gmail.com", "4560"],
+  ["102", "Arjan", "Ar@yahoo.com", "7895"],
+];
 
 try {
-  connection.query("show tables", (err, result) => {
+  connection.query(q, [users], (err, result) => {
     if (err) throw err;
     console.log(result);
   });
@@ -25,4 +30,3 @@ let getRandomUser = () => {
     password: faker.internet.password(),
   };
 };
-
