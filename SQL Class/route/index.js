@@ -1,9 +1,10 @@
 const express = require("express");
 const mysql = require("mysql2");
-const { faker } = require("@faker-js/faker");
-const uuid = require("uuid");
+const { faker, da } = require("@faker-js/faker");
+const { v4: uuidv4 } = require("uuid");
 const Path = require("path");
 const method = require("method-override");
+const { error } = require("console");
 
 const app = express();
 
@@ -98,7 +99,7 @@ app.patch("/user/:id", (req, res) => {
             if (err) {
               throw err;
             }
-            res.redirect('/user');
+            res.redirect("/user");
           });
         } catch (err) {
           console.log(err);
@@ -113,6 +114,30 @@ app.patch("/user/:id", (req, res) => {
   }
 
   // res.send(`request is send`);
+});
+
+app.get("/user/add", (req, res) => {
+  res.render(`addUser.ejs`);
+});
+
+app.post("/user/add", (req, res) => {
+  let { username, password, email } = req.body;
+  // console.log(req.body);
+  let id = uuidv4();
+  let q = `INSERT INTO user (id , username , email , password)VALUES ('${id}','${username}','${email}','${password}')`;
+  try {
+    connection.query(q, (err, result) => {
+      if (err) {
+        throw err;
+      }
+      console.log(`new user added`);
+      res.redirect("/user");
+    });
+  } catch (error) {
+    console.log(error);
+  }
+  // res.send("adding user");
+  // connection.end();
 });
 
 const port = 8080;
