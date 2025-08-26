@@ -3,9 +3,11 @@ const mysql = require("mysql2");
 const { faker } = require("@faker-js/faker");
 const uuid = require("uuid");
 const Path = require("path");
+const method = require("method-override");
 
 const app = express();
 
+app.use(method("_method"));
 app.set("view engine", "ejs");
 app.set("views", Path.join(__dirname, "/views"));
 
@@ -36,6 +38,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/user", (req, res) => {
+  // show all user's id, username, email in table
   q = `select * from user`;
   try {
     connection.query(q, (err, result) => {
@@ -49,6 +52,32 @@ app.get("/user", (req, res) => {
     console.log(err);
     res.send(`some error in DB `, err);
   }
+});
+
+app.get("/user/:id/edit", (req, res) => {
+  // edit username by edit button and sending patch request
+  let { id } = req.params;
+  let q = `SELECT * FROM user WHERE id = '${id}'`;
+  try {
+    connection.query(q, (err, result) => {
+      if (err) {
+        throw err;
+      }
+      let user = result[0];
+      res.render(`edit.ejs`, { user });
+      console.log(user);
+    });
+  } catch (err) {
+    console.log(err);
+    res.send(`some error in DB `, err);
+  }
+  // console.log(id);
+  // res.render(`edit.ejs`);
+});
+
+app.patch("/user/:id", (req, res) => {
+  // accepting patch request and update in database
+  res.send(`request is send`);
 });
 
 const port = 8080;
