@@ -8,6 +8,8 @@ const method = require("method-override");
 const app = express();
 
 app.use(method("_method"));
+app.use(express.urlencoded({ extended: true }));
+
 app.set("view engine", "ejs");
 app.set("views", Path.join(__dirname, "/views"));
 
@@ -77,7 +79,40 @@ app.get("/user/:id/edit", (req, res) => {
 
 app.patch("/user/:id", (req, res) => {
   // accepting patch request and update in database
-  res.send(`request is send`);
+
+  let { id } = req.params;
+  let { password: formPass, username: formUser } = req.body;
+  let q = `SELECT * FROM user WHERE id = '${id}'`;
+  try {
+    connection.query(q, (err, result) => {
+      if (err) {
+        throw err;
+      }
+      let user = result[0];
+      if (formPass != user.password) {
+        res.send(`wronge password`);
+      } else {
+        let q2 = `UPDATE user SET username='${formUser}' WHERE id = '${id}'`;
+        try {
+          connection.query(q2, (err, result) => {
+            if (err) {
+              throw err;
+            }
+            res.redirect('/user');
+          });
+        } catch (err) {
+          console.log(err);
+        }
+      }
+      // res.send(user);
+      console.log(user);
+    });
+  } catch (err) {
+    console.log(err);
+    res.send(`some error in DB `, err);
+  }
+
+  // res.send(`request is send`);
 });
 
 const port = 8080;
