@@ -31,7 +31,35 @@ const user2 = new User({
   age: 46,
 });
 
-user1.save();
-user2.save(); //we use as a promise also .then().catch();
+// user1.save();
+// user2.save(); //we use as a promise also .then().catch();
 
+// User.insertMany([
+//   { name: "tony", email: "tony@gmail.com", age: 85 },
+//   { name: "thor", email: "thor@gmail.com", age: 65 },
+//   { name: "hulk", email: "hulk@gmail.com", age: 75 },
+// ]).then((result) => {
+//   console.log(result);
+// });
+// User.find({}).then((res) => {
+//   console.log(res);
+// });
+// User.findByIdAndUpdate(
+//   "68b147c8fdc0eb384855b363",
+//   { $set: { name: "jason bourne" } },
+//   { new: true }
+// ).then((res) => {
+//   console.log(res);
+// });
 
+// User.deleteOne({ name: "tony" })
+//   .then((res) => {
+//     console.log(res);
+//   })
+//   .catch((err) => {
+//     console.log(err);
+//   });
+
+User.deleteMany({ age: { $gt: 50 } }).then((res) => {
+  console.log(res);
+});
