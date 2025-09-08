@@ -9,7 +9,7 @@ const app = express();
 
 app.use((req, res, next) => {
   req.time = new Date(Date.now()).toLocaleString();
-  console.log(req.method, req.hostname, req.time);
+  console.log(req.method, req.hostname, req.path, req.time);
   next();
 });
 
