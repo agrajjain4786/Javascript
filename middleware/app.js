@@ -2,9 +2,15 @@ const express = require("express");
 const app = express();
 
 // middleware
-app.use((req, res) => {
-  console.log(`Hi, I am middleware`);
-  res.send("middleware finished");
+// app.use((req, res) => {
+//   console.log(`Hi, I am middleware`);
+//   res.send("middleware finished");
+// });
+
+app.use((req, res, next) => {
+  req.time = new Date(Date.now()).toLocaleString();
+  console.log(req.method, req.hostname, req.time);
+  next();
 });
 
 app.get("/", (req, res) => {
